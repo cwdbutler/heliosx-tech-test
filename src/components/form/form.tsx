@@ -69,6 +69,8 @@ const Form = ({
     setValues((values) => ({ ...values, [name]: value }));
   };
 
+  const isValidField = !!(values && values[activeField.name]);
+
   return !isComplete ? (
     <form
       title={name}
@@ -99,9 +101,11 @@ const Form = ({
           </Button>
         )}
         {isLastField ? (
-          <Button type="submit">{submitButtonText}</Button>
+          <Button type="submit" disabled={!isValidField}>
+            {submitButtonText}
+          </Button>
         ) : (
-          <Button type="button" onClick={goForward}>
+          <Button type="button" onClick={goForward} disabled={!isValidField}>
             Next
           </Button>
         )}

@@ -59,6 +59,7 @@ describe("Form", () => {
       expect(screen.queryByLabelText(secondInputLabel)).not.toBeInTheDocument();
       expect(screen.queryByLabelText(thirdInputLabel)).not.toBeInTheDocument();
 
+      await user.type(screen.getByLabelText(firstInputLabel), "asdf");
       await user.click(nextButton);
 
       expect(form).toBeVisible();
@@ -66,6 +67,7 @@ describe("Form", () => {
       expect(screen.queryByLabelText(firstInputLabel)).not.toBeInTheDocument();
       expect(screen.queryByLabelText(thirdInputLabel)).not.toBeInTheDocument();
 
+      await user.type(screen.getByLabelText(secondInputLabel), "asdf");
       await user.click(nextButton);
 
       // final step
