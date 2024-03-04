@@ -5,10 +5,10 @@ import { Form } from "./components/form";
 function App() {
   return (
     <>
-      <Header>MedExpress</Header>
+      <Header>Dermatica</Header>
       <Form
         title="Consultation form"
-        name="hi"
+        name="Consultation form"
         subtitle="Answer a few quick and easy questions from our pharmacists"
         fields={[
           {
