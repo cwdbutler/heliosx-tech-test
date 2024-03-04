@@ -14,6 +14,7 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
+    "no-console": 2,
   },
   overrides: [
     {
