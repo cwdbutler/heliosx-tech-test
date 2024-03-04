@@ -22,10 +22,20 @@ function App() {
                 placeholder: "type something",
               },
               {
-                id: "field 2",
-                name: "field 2",
-                label: "field 2",
-                maxLength: 5,
+                label: "One or the other",
+                name: "pick",
+                options: [
+                  {
+                    value: "1",
+                    id: "option 1",
+                    label: "option 1",
+                  },
+                  {
+                    value: "2",
+                    id: "option 2",
+                    label: "option 2",
+                  },
+                ],
               },
               { id: "field 3", name: "field 3", label: "field 3" },
             ]}

@@ -1,16 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useRef, useState } from "react";
 import { Button } from "../button";
 import { TextInput, TextInputField } from "../text-input";
+import { RadioInput, RadioInputField } from "../radio-input";
 import styles from "./form.module.css";
+
+type Field = TextInputField | RadioInputField;
 
 interface FormProps {
   name: string;
   title: string;
   subtitle?: string;
-  fields: TextInputField[];
+  fields: Field[];
   submitButtonText: string;
   completedText: string;
 }
+
+const Input = forwardRef(
+  (props: Field, ref: React.ComponentPropsWithRef<"input">["ref"]) => {
+    // this is not really scaleable. with more field types, this would need to be refactored into a switch statement and its own separate component file
+    if ("options" in props) {
+      return <RadioInput {...props} ref={ref} />;
+    } else {
+      return <TextInput {...props} ref={ref} />;
+    }
+  }
+);
 
 const Form = ({
   name,
@@ -70,10 +84,10 @@ const Form = ({
       <div className={styles.main}>
         <h3>{title}</h3>
         {subtitle && <p>{subtitle}</p>}
-        <TextInput
-          ref={inputRef}
-          key={activeField.id}
+        <Input
           {...activeField}
+          key={activeField.id}
+          ref={inputRef}
           defaultValue={values && values[activeField.name]}
           onChange={handleChange}
         />
