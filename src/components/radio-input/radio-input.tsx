@@ -13,37 +13,46 @@ interface RadioInputProps {
 }
 
 export type RadioInputField = RadioInputProps &
-  Omit<React.ComponentPropsWithRef<"input">, "className">;
-// allows for standard input props to be passed but prevents style from being overriden
+  Omit<React.ComponentPropsWithRef<"fieldset">, "className" | "onChange"> & {
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  };
+// allows for standard fieldset props to be passed but prevents style from being overriden
 
 const RadioInput = forwardRef(
   (
-    { name, label, options, defaultValue, onChange }: RadioInputField,
+    {
+      name,
+      label,
+      options,
+      defaultValue,
+      onChange,
+      ...componentProps
+    }: RadioInputField,
     ref?: React.ComponentPropsWithRef<"input">["ref"]
   ) => {
     return (
-      <fieldset className={styles.component}>
+      <fieldset {...componentProps} className={styles.component}>
         <legend className={styles.legend}>{label}</legend>
         {options.map(({ label, value, id, ...inputProps }) => {
-          const isChecked = defaultValue === value;
+          const isPreChecked = defaultValue === value;
           return (
             <label
               className={cx(styles.label, {
-                [styles.checked]: isChecked,
+                [styles.checked]: isPreChecked,
               })}
               htmlFor={id}
               key={label}
             >
               <input
                 {...inputProps}
+                key={id}
                 id={id}
                 className={styles.input}
                 type="radio"
                 name={name}
-                value={value}
-                defaultChecked={isChecked}
-                ref={(isChecked && ref) || undefined}
-                tabIndex={isChecked ? 0 : -1}
+                value={value.toString()}
+                defaultChecked={isPreChecked}
+                ref={(isPreChecked && ref) || undefined}
                 onChange={onChange}
               />
               {label}

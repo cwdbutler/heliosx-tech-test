@@ -34,7 +34,9 @@ const Form = ({
   submitButtonText,
   completedText,
 }: FormProps) => {
-  const [values, setValues] = useState<Record<string, string>>();
+  const [values, setValues] = useState<
+    Record<string, string | boolean | number>
+  >({});
   const [fieldIndex, setFieldIndex] = useState(0);
   const [activeField, setActiveField] = useState(fields[0]);
   const [isLastField, setIsLastField] = useState(false);
@@ -66,10 +68,18 @@ const Form = ({
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-    setValues((values) => ({ ...values, [name]: value }));
+    // coercing these as booleans are much more useful in the real world
+    let coercedValue: string | boolean = value;
+    if (value.toLowerCase() === "true") {
+      coercedValue = true;
+    }
+    if (value.toLowerCase() === "false") {
+      coercedValue = false;
+    }
+    setValues((values) => ({ ...values, [name]: coercedValue }));
   };
 
-  const isValidField = !!(values && values[activeField.name]);
+  const isValidField = !!(values && values[activeField.name] !== undefined);
 
   return !isComplete ? (
     <form
@@ -90,7 +100,7 @@ const Form = ({
           {...activeField}
           key={activeField.id}
           ref={inputRef}
-          defaultValue={values && values[activeField.name]}
+          defaultValue={values[activeField.name]?.toString()}
           onChange={handleChange}
         />
       </div>
