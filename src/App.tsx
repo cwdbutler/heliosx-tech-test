@@ -1,6 +1,8 @@
 import styles from "./App.module.css";
 import { Header } from "./components/header";
 import { Form } from "./components/form";
+import { Footer } from "./components/footer";
+import { LinkList } from "./components/link-list";
 
 function App() {
   return (
@@ -32,6 +34,34 @@ function App() {
           />
         </div>
       </main>
+      <Footer>
+        <LinkList
+          title="Useful Links"
+          links={[
+            {
+              text: "Support centre",
+              url: "https://support.dermatica.co.uk/hc/en-gb",
+            },
+            { text: "Blog", url: "https://www.dermatica.co.uk/skinlab" },
+          ]}
+        />
+        <LinkList
+          title="Contact Us"
+          links={[
+            {
+              text: "Send us a message",
+              url: "https://www.dermatica.co.uk/#:~:text=Contact%20Us-,Send%20us%20a%20message,-Get%20the%20latest",
+            },
+          ]}
+        />
+        <LinkList
+          title="My Links"
+          links={[
+            { text: "GitHub", url: "https://github.com/cwdbutler" },
+            { text: "Website", url: "https://conor.tech" },
+          ]}
+        />
+      </Footer>
     </>
   );
 }
