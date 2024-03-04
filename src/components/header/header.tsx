@@ -1,11 +1,12 @@
+import { ReactNode } from "react";
 import styles from "./header.module.css";
 
 interface HeaderProps {
-  title: string;
+  children: ReactNode;
 }
 
-const Header = ({ title }: HeaderProps) => {
-  return <h1 className={styles.header}>{title}</h1>;
+const Header = ({ children }: HeaderProps) => {
+  return <h1 className={styles.header}>{children}</h1>;
 };
 
 export { Header };
