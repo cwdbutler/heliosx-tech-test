@@ -61,6 +61,8 @@ const Form = ({
       name={name}
       onSubmit={(event) => {
         event?.preventDefault();
+        // eslint-disable-next-line no-console
+        console.log(values);
         setIsComplete(true);
       }}
       className={styles.form}
@@ -88,10 +90,7 @@ const Form = ({
       )}
     </form>
   ) : (
-    <>
-      <pre>values: {JSON.stringify(values, null, 2)}</pre>
-      <p>{completedText}</p>
-    </>
+    <p>{completedText}</p>
   );
 };
 
