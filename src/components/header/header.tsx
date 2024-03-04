@@ -6,7 +6,12 @@ interface HeaderProps {
 }
 
 const Header = ({ children }: HeaderProps) => {
-  return <h1 className={styles.header}>{children}</h1>;
+  return (
+    <div className={styles.header}>
+      <img src="./logo.png" alt="Dermatica logo" />
+      <h1>{children}</h1>
+    </div>
+  );
 };
 
 export { Header };

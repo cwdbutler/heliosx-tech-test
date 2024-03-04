@@ -4,6 +4,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  margin: 0;
+  background-color: var(--background-primary);
+}
+
+/* #root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
+
 * {
   font-family: "TWK Everett", Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -16,4 +27,8 @@ h4,
 h5,
 h6 {
   font-weight: 500;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
 }

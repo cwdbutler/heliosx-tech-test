@@ -67,27 +67,31 @@ const Form = ({
       }}
       className={styles.form}
     >
-      <h3>{title}</h3>
-      {subtitle && <p>{subtitle}</p>}
-      <TextInput
-        ref={inputRef}
-        key={activeField.id}
-        {...activeField}
-        defaultValue={values && values[activeField.name]}
-        onChange={handleChange}
-      />
-      {isLastField ? (
-        <Button type="submit">{submitButtonText}</Button>
-      ) : (
-        <Button type="button" onClick={goForward}>
-          Next
-        </Button>
-      )}
-      {fieldIndex > 0 && (
-        <Button type="button" onClick={goBack}>
-          Back
-        </Button>
-      )}
+      <div className={styles.main}>
+        <h3>{title}</h3>
+        {subtitle && <p>{subtitle}</p>}
+        <TextInput
+          ref={inputRef}
+          key={activeField.id}
+          {...activeField}
+          defaultValue={values && values[activeField.name]}
+          onChange={handleChange}
+        />
+      </div>
+      <div className={styles.footer}>
+        {fieldIndex > 0 && (
+          <Button type="button" onClick={goBack}>
+            Back
+          </Button>
+        )}
+        {isLastField ? (
+          <Button type="submit">{submitButtonText}</Button>
+        ) : (
+          <Button type="button" onClick={goForward}>
+            Next
+          </Button>
+        )}
+      </div>
     </form>
   ) : (
     <p>{completedText}</p>
