@@ -6,38 +6,83 @@ import { LinkList } from "./components/link-list";
 
 function App() {
   return (
-    <>
+    <div className={styles.layout}>
       <Header>Dermatica</Header>
       <main className={styles.main}>
         <div className={styles.form}>
           <Form
             title="Consultation form"
             name="Consultation form"
-            subtitle="Answer a few quick and easy questions from our pharmacists"
+            subtitle="Answer a few quick and easy questions from our pharmacists."
             fields={[
               {
-                id: "field 1",
-                name: "field 1",
-                label: "field 1",
-                placeholder: "type something",
+                id: "name",
+                name: "name",
+                label: "Legal name",
+                placeholder: "Tony Soprano",
+                maxLength: 50,
               },
               {
-                label: "One or the other",
-                name: "pick",
+                label: "Do you have Asthma?",
+                name: "asthma",
                 options: [
                   {
-                    value: "1",
-                    id: "option 1",
-                    label: "option 1",
+                    value: "true",
+                    id: "asthma-yes",
+                    label: "Yes",
                   },
                   {
-                    value: "2",
-                    id: "option 2",
-                    label: "option 2",
+                    value: "false",
+                    id: "asthma-no",
+                    label: "No",
                   },
                 ],
               },
-              { id: "field 3", name: "field 3", label: "field 3" },
+
+              {
+                label: "Have you sneezed in the last 48 hours?",
+                name: "recent-sneezer",
+                options: [
+                  {
+                    value: "true",
+                    id: "sneeze-yes",
+                    label: "Yes",
+                  },
+                  {
+                    value: "false",
+                    id: "sneeze-no",
+                    label: "No",
+                  },
+                ],
+              },
+              {
+                label: "Are you human?",
+                name: "human",
+                options: [
+                  {
+                    value: "true",
+                    id: "human-yes",
+                    label: "Yes",
+                  },
+                  {
+                    value: "false",
+                    id: "human-no",
+                    label: "No",
+                  },
+                  {
+                    value: "maybe",
+                    id: "human-maybe",
+                    label: "Maybe",
+                  },
+                ],
+              },
+              {
+                id: "email",
+                name: "email",
+                label: "Please enter your email",
+                maxLength: 50,
+                type: "email",
+              },
             ]}
             submitButtonText="Submit"
             completedText="Thank you for completing the consultation. We will be in touch shortly."
@@ -72,7 +117,7 @@ function App() {
           ]}
         />
       </Footer>
-    </>
+    </div>
   );
 }
 

@@ -122,7 +122,7 @@ const Form = ({
       </div>
     </form>
   ) : (
-    <p>{completedText}</p>
+    <p className={styles.completed}>{completedText}</p>
   );
 };
 

@@ -15,3 +15,7 @@
     width: 100%;
   }
 }
+
+.completed {
+  text-align: center;
+}
